@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import MovieCard from './MovieCard.vue'
 
 const movies = ref([])
@@ -16,17 +16,30 @@ onMounted(async () => {
     console.error('Failed to fetch movies:', error)
   }
 })
+const totalMovies = computed(() => {
+  return movies.value.length
+})
+
+const averageRating = computed(() => {
+  if (movies.value.length === 0) {
+    return 0
+  }
+
+  const total = movies.value.reduce((sum, movie) => sum + movie.rating, 0)
+
+  return (total / movies.value.length).toFixed(1)
+})
 </script>
 
 <template>
   <div class="flex items-center justify-between mb-12">
     <div class="flex items-center space-x-8">
       <div class="text-gray-300 text-lg font-medium">
-        <span class="text-white font-semibold">Total Movies:</span> 3
+        <span class="text-white font-semibold">Total Movies:</span> {{ totalMovies }}
       </div>
       <div class="text-gray-400 text-xl font-light">/</div>
       <div class="text-gray-300 text-lg font-medium">
-        <span class="text-white font-semibold">Average Rating:</span> 3.7
+        <span class="text-white font-semibold">Average Rating:</span> {{ averageRating }}
       </div>
     </div>
 
