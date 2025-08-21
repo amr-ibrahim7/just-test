@@ -1,31 +1,183 @@
 {
   "items": [
     {
-      "id": 1,
+      "id": "1",
       "name": "The Godfather",
       "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
       "image": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UY1982_.jpg",
       "rating": 4,
-      "genres": ["Crime", "Drama"],
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
       "inTheaters": false
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "The Shawshank Redemption",
       "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
       "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
       "rating": 4,
-      "genres": ["Drama"],
+      "genres": [
+        "Drama"
+      ],
       "inTheaters": true
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "The Dark Knight",
       "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
       "image": "https://m.media-amazon.com/images/I/81IfoBox2TL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
       "rating": 3,
-      "genres": ["Action", "Crime", "Drama"],
+      "genres": [
+        "Action",
+        "Crime",
+        "Drama"
+      ],
       "inTheaters": false
+    },
+    {
+      "id": "4fac",
+      "name": "ay 7aga ",
+      "description": "bblababhshhsblababhshhsblababhshhsblababhshhslababhshhs",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 4,
+      "genres": [
+        "crime",
+        "comedi"
+      ],
+      "inTheaters": true
+    },
+    {
+      "id": "ee8b",
+      "name": "ejejejeej",
+      "description": "wjjeekkkswjjeekkkswjjeekkks",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "drama,ddd"
+      ],
+      "inTheaters": true
+    },
+    {
+      "id": "be08",
+      "name": "ejejejeej",
+      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwww",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "drama,ddd"
+      ],
+      "inTheaters": true
+    },
+    {
+      "id": "6f95",
+      "name": "ejejejeej",
+      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwww",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "drama"
+      ],
+      "inTheaters": true
+    },
+    {
+      "id": "7e91",
+      "name": "ejejejeej",
+      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwww",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "drama"
+      ],
+      "inTheaters": false
+    },
+    {
+      "id": "c73c",
+      "name": "ejejejeej",
+      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwwwwjjeekkkswjjeekkkswjjeekkkswwwwwwwjjeekkkswjjeekkkswjjeekkkswwwwww",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "drama"
+      ],
+      "inTheaters": false
+    },
+    {
+      "id": "9aaf",
+      "name": "ااااص",
+      "description": "صصااثاثاثصصااثاثاثصصااثاثاث",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "Comedy",
+        "Crime"
+      ],
+      "inTheaters": false
+    },
+    {
+      "id": "1f6b",
+      "name": "تامي ",
+      "description": "تايميمنبوتبتايميمنبوتبتايميمنبوتبتايميمنبوتب",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "Action",
+        "Comedy"
+      ],
+      "inTheaters": false
+    },
+    {
+      "id": "db5b",
+      "name": "تامي ",
+      "description": "تايميمنبوتبتايميمنبوتبتايميمنبوتبتايميمنبوتب",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "Action",
+        "Comedy"
+      ],
+      "inTheaters": false
+    },
+    {
+      "id": "ff3f",
+      "name": "aaaaa",
+      "description": "aaaaaaaaaaaaaaa",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "Drama",
+        "Action",
+        "Comedy",
+        "Crime"
+      ],
+      "inTheaters": true
+    },
+    {
+      "id": "f426",
+      "name": "wjheheh",
+      "description": "wjhehehwjhehehwjheheh",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "Action",
+        "Comedy"
+      ],
+      "inTheaters": false
+    },
+    {
+      "id": "c326",
+      "name": "Amr Ibrahim Mohamed Tolba",
+      "description": "dddkdfjjdddkdfjjdddkdfjjdddkdfjjdddkdfjj",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 5,
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Action",
+        "Drama"
+      ],
+      "inTheaters": true
     }
   ]
 }

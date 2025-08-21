@@ -1,10 +1,14 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import MovieCard from './MovieCard.vue'
-import { RouterLink } from 'vue-router'
+import MovieModal from './MovieModal.vue'
 import { useMovies } from '@/composables/useMovies.js'
+import SuccessModal from './SuccessModal.vue'
 
 const { movies, loading, error } = useMovies()
+
+const isAddModalOpen = ref(false)
+const isSuccessModalOpen = ref(false)
 
 const totalMovies = computed(() => {
   return movies.value.length
@@ -15,6 +19,24 @@ const averageRating = computed(() => {
   const total = movies.value.reduce((sum, movie) => sum + movie.rating, 0)
   return (total / movies.value.length).toFixed(1)
 })
+function openAddMovieModal() {
+  isAddModalOpen.value = true
+}
+
+function closeAddMovieModal() {
+  isAddModalOpen.value = false
+}
+
+function closeSuccessModal() {
+  isSuccessModalOpen.value = false
+}
+function handleMovieAdded(newMovie) {
+  movies.value.push(newMovie)
+
+  isAddModalOpen.value = false
+
+  isSuccessModalOpen.value = true
+}
 </script>
 
 <template>
@@ -34,12 +56,12 @@ const averageRating = computed(() => {
       >
         Remove Ratings
       </button>
-      <RouterLink
-        to="/add"
+      <button
+        @click="openAddMovieModal"
         class="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-medium transition-colors duration-200"
       >
         Add Movie
-      </RouterLink>
+      </button>
     </div>
   </div>
 
@@ -60,4 +82,11 @@ const averageRating = computed(() => {
       :alt-text="movie.name"
     />
   </div>
+  <MovieModal
+    :is-open="isAddModalOpen"
+    @close="closeAddMovieModal"
+    @movie-added="handleMovieAdded"
+  />
+
+  <SuccessModal :is-open="isSuccessModalOpen" @close="closeSuccessModal" />
 </template>
