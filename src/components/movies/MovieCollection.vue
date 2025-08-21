@@ -1,5 +1,21 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import MovieCard from './MovieCard.vue'
+
+const movies = ref([])
+
+onMounted(async () => {
+  try {
+    const response = await fetch('http://localhost:3000/items')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    movies.value = data
+  } catch (error) {
+    console.error('Failed to fetch movies:', error)
+  }
+})
 </script>
 
 <template>
@@ -27,32 +43,18 @@ import MovieCard from './MovieCard.vue'
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <MovieCard
-      title="The Godfather"
-      :genres="['Crime', 'Drama']"
-      description="The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
-      :rating="4"
-      poster="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UY1982_.jpg"
-      alt-text="The Godfather"
-    />
 
+  <div v-if="movies.length === 0" class="text-center text-gray-400">Loading movies...</div>
+  <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <MovieCard
-      title="The Shawshank Redemption"
-      :genres="['Drama']"
-      description="Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
-      :rating="4"
-      poster="https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg"
-      alt-text="The Shawshank Redemption"
-    />
-
-    <MovieCard
-      title="The Dark Knight"
-      :genres="['Action', 'Crime', 'Drama']"
-      description="When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
-      :rating="3"
-      poster="https://m.media-amazon.com/images/I/81IfoBox2TL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
-      alt-text="The Dark Knight"
+      v-for="movie in movies"
+      :key="movie.id"
+      :title="movie.name"
+      :genres="movie.genres"
+      :description="movie.description"
+      :rating="movie.rating"
+      :poster="movie.image"
+      :alt-text="movie.name"
     />
   </div>
 </template>
