@@ -1,16 +1,11 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+// import TheHeader from './components/layout/TheHeader.vue'
 </script>
 
 <template>
-  <header>
-    <div>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/movie">Movie</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <!-- <TheHeader /> -->
+  <main class="min-h-screen">
+    <RouterView />
+  </main>
 </template>
