@@ -19,6 +19,7 @@ const averageRating = computed(() => {
   const total = movies.value.reduce((sum, movie) => sum + movie.rating, 0)
   return (total / movies.value.length).toFixed(1)
 })
+
 function openAddMovieModal() {
   isAddModalOpen.value = true
 }
@@ -30,12 +31,19 @@ function closeAddMovieModal() {
 function closeSuccessModal() {
   isSuccessModalOpen.value = false
 }
+
 function handleMovieAdded(newMovie) {
   movies.value.push(newMovie)
-
   isAddModalOpen.value = false
-
   isSuccessModalOpen.value = true
+}
+
+function handleEditMovie(movieId) {
+  console.log('edit movie:', movieId)
+}
+
+function handleDeleteMovie(movieId) {
+  console.log('delete movie:', movieId)
 }
 </script>
 
@@ -74,14 +82,18 @@ function handleMovieAdded(newMovie) {
     <MovieCard
       v-for="movie in movies"
       :key="movie.id"
+      :movie-id="movie.id"
       :title="movie.name"
       :genres="movie.genres"
       :description="movie.description"
       :rating="movie.rating"
       :poster="movie.image"
       :alt-text="movie.name"
+      @edit-movie="handleEditMovie(movie.id)"
+      @delete-movie="handleDeleteMovie(movie.id)"
     />
   </div>
+
   <MovieModal
     :is-open="isAddModalOpen"
     @close="closeAddMovieModal"
