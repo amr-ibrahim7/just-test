@@ -2,17 +2,22 @@
 import { computed, ref } from 'vue'
 import MovieCard from './MovieCard.vue'
 import MovieModal from './MovieModal.vue'
-import { useMovies } from '@/composables/useMovies.js'
+import EditMovieModal from './EditMovieModal.vue'
 import SuccessModal from './SuccessModal.vue'
+import ConfirmationModal from './ConfirmationModal.vue'
+import { useMovies } from '@/composables/useMovies.js'
 
-const { movies, loading, error } = useMovies()
+const { movies, loading, error, deleteMovie, updateMovie } = useMovies()
 
 const isAddModalOpen = ref(false)
+const isEditModalOpen = ref(false)
 const isSuccessModalOpen = ref(false)
+const isConfirmModalOpen = ref(false)
 
-const totalMovies = computed(() => {
-  return movies.value.length
-})
+const movieToEdit = ref(null)
+const movieToDeleteId = ref(null)
+
+const totalMovies = computed(() => movies.value.length)
 
 const averageRating = computed(() => {
   if (movies.value.length === 0) return 0
@@ -21,29 +26,47 @@ const averageRating = computed(() => {
 })
 
 function openAddMovieModal() {
+  movieToEdit.value = null
   isAddModalOpen.value = true
 }
-
 function closeAddMovieModal() {
   isAddModalOpen.value = false
+}
+function handleMovieAdded(newMovie) {
+  movies.value.push(newMovie)
+  closeAddMovieModal()
+  isSuccessModalOpen.value = true
+}
+
+function openEditMovieModal(movieId) {
+  movieToEdit.value = movies.value.find((m) => m.id === movieId)
+  if (movieToEdit.value) {
+    isEditModalOpen.value = true
+  }
+}
+function closeEditMovieModal() {
+  isEditModalOpen.value = false
+}
+
+async function handleMovieUpdated(updatedMovieData) {
+  await updateMovie(updatedMovieData)
+  closeEditMovieModal()
+}
+
+function openDeleteConfirmation(movieId) {
+  movieToDeleteId.value = movieId
+  isConfirmModalOpen.value = true
+}
+async function confirmDelete() {
+  if (movieToDeleteId.value) {
+    await deleteMovie(movieToDeleteId.value)
+  }
+  isConfirmModalOpen.value = false
+  movieToDeleteId.value = null
 }
 
 function closeSuccessModal() {
   isSuccessModalOpen.value = false
-}
-
-function handleMovieAdded(newMovie) {
-  movies.value.push(newMovie)
-  isAddModalOpen.value = false
-  isSuccessModalOpen.value = true
-}
-
-function handleEditMovie(movieId) {
-  console.log('edit movie:', movieId)
-}
-
-function handleDeleteMovie(movieId) {
-  console.log('delete movie:', movieId)
 }
 </script>
 
@@ -89,8 +112,8 @@ function handleDeleteMovie(movieId) {
       :rating="movie.rating"
       :poster="movie.image"
       :alt-text="movie.name"
-      @edit-movie="handleEditMovie(movie.id)"
-      @delete-movie="handleDeleteMovie(movie.id)"
+      @edit-movie="openEditMovieModal"
+      @delete-movie="openDeleteConfirmation"
     />
   </div>
 
@@ -100,5 +123,18 @@ function handleDeleteMovie(movieId) {
     @movie-added="handleMovieAdded"
   />
 
+  <EditMovieModal
+    :is-open="isEditModalOpen"
+    :movie="movieToEdit"
+    @close="closeEditMovieModal"
+    @movie-updated="handleMovieUpdated"
+  />
+
   <SuccessModal :is-open="isSuccessModalOpen" @close="closeSuccessModal" />
+
+  <ConfirmationModal
+    :is-open="isConfirmModalOpen"
+    @close="isConfirmModalOpen = false"
+    @confirm="confirmDelete"
+  />
 </template>

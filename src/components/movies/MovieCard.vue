@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   title: String,
   genres: Array,
   description: String,
@@ -12,13 +12,11 @@ defineProps({
 const emit = defineEmits(['edit-movie', 'delete-movie'])
 
 function handleEdit() {
-  emit('edit-movie')
-  console.log('Edit movie clicked')
+  emit('edit-movie', props.movieId)
 }
 
 function handleDelete() {
-  emit('delete-movie')
-  console.log('Delete movie clicked')
+  emit('delete-movie', props.movieId)
 }
 </script>
 

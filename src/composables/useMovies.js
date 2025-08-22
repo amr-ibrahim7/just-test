@@ -20,7 +20,44 @@ export function useMovies() {
     }
   }
 
+  async function updateMovie(movieData) {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/${movieData.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieData),
+      })
+      if (!response.ok) {
+        throw new Error('Failed to update the movie.')
+      }
+      const updatedMovie = await response.json()
+
+      const index = movies.value.findIndex((m) => m.id === updatedMovie.id)
+      if (index !== -1) {
+        movies.value[index] = updatedMovie
+      }
+    } catch (e) {
+      console.error('Error updating movie:', e)
+    }
+  }
+
+  async function deleteMovie(movieId) {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/${movieId}`, {
+        method: 'DELETE',
+      })
+      if (!response.ok) {
+        throw new Error('Failed to delete the movie.')
+      }
+      movies.value = movies.value.filter((movie) => movie.id !== movieId)
+    } catch (e) {
+      console.error('Error deleting movie:', e)
+    }
+  }
+
   onMounted(fetchMovies)
 
-  return { movies, loading, error, fetchMovies }
+  return { movies, loading, error, fetchMovies, updateMovie, deleteMovie }
 }

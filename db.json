@@ -19,7 +19,9 @@
       "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
       "rating": 4,
       "genres": [
-        "Drama"
+        "Drama",
+        "Crime",
+        "Action"
       ],
       "inTheaters": true
     },
@@ -102,82 +104,6 @@
         "drama"
       ],
       "inTheaters": false
-    },
-    {
-      "id": "9aaf",
-      "name": "ااااص",
-      "description": "صصااثاثاثصصااثاثاثصصااثاثاث",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "Comedy",
-        "Crime"
-      ],
-      "inTheaters": false
-    },
-    {
-      "id": "1f6b",
-      "name": "تامي ",
-      "description": "تايميمنبوتبتايميمنبوتبتايميمنبوتبتايميمنبوتب",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "Action",
-        "Comedy"
-      ],
-      "inTheaters": false
-    },
-    {
-      "id": "db5b",
-      "name": "تامي ",
-      "description": "تايميمنبوتبتايميمنبوتبتايميمنبوتبتايميمنبوتب",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "Action",
-        "Comedy"
-      ],
-      "inTheaters": false
-    },
-    {
-      "id": "ff3f",
-      "name": "aaaaa",
-      "description": "aaaaaaaaaaaaaaa",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "Drama",
-        "Action",
-        "Comedy",
-        "Crime"
-      ],
-      "inTheaters": true
-    },
-    {
-      "id": "f426",
-      "name": "wjheheh",
-      "description": "wjhehehwjhehehwjheheh",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "Action",
-        "Comedy"
-      ],
-      "inTheaters": false
-    },
-    {
-      "id": "c326",
-      "name": "Amr Ibrahim Mohamed Tolba",
-      "description": "dddkdfjjdddkdfjjdddkdfjjdddkdfjjdddkdfjj",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "Comedy",
-        "Crime",
-        "Action",
-        "Drama"
-      ],
-      "inTheaters": true
     }
   ]
 }
