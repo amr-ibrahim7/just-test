@@ -1,8 +1,9 @@
 # Movie Rating App
 
-A simple and interactive movie rating application built with Vue.js, Tailwind CSS, and powered by a JSON server for data handling. Users can view, add, edit, delete, and rate movies.
+## A simple and interactive movie rating application built with Vue.js, Tailwind CSS, and powered by a JSON server for data handling. Users can view, add, edit, delete, and rate movies.
 
-![App Screenshot]
+<br/>
+<br/>
 <img width="1280" height="620" alt="app1" src="https://github.com/user-attachments/assets/b331c37b-d31d-493c-932d-62d6cde1be57" />
 <br/>
 <br/>
@@ -16,7 +17,7 @@ A simple and interactive movie rating application built with Vue.js, Tailwind CS
 - **View Movies:** Fetches and displays a list of movies from the API.
 - **Interactive Rating:** A 5-star system to rate and update movie ratings.
 - **CRUD Operations:** Full functionality to **C**reate, **R**ead, **U**pdate, and **D**elete movies.
-- **Form Validation:** Ensures data integrity when adding or editing movies.
+- **Form Validation:** Ensures data integrity when adding or editing movies using Zod schemas.
 - **Filtering & Searching:** Easily find movies by name, genre, or "In Theaters" status.
 - **Pagination:** Smoothly navigate through a large collection of movies.
 
@@ -24,6 +25,7 @@ A simple and interactive movie rating application built with Vue.js, Tailwind CS
 
 - **Frontend:** [Vue.js 3](https://vuejs.org/) (Composition API)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Schema Validation:** [Zod](https://zod.dev/)
 - **Backend (Development):** [JSON Server](https://github.com/typicode/json-server)
 - **Build Tool:** [Vite](https://vitejs.dev/)
 
@@ -40,7 +42,7 @@ You need to have [Node.js](https://nodejs.org/) (version 20.x or higher) and [pn
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/amr-ibrahim7/just-test.git
+    git clone https://github.com/amr-ibrahim7/movie_app.git
     cd movie_app
     ```
 
