@@ -11,28 +11,20 @@ const props = defineProps({
 
 const emit = defineEmits(['edit-movie', 'delete-movie', 'update-rating', 'remove-rating'])
 
-function handleEdit(event) {
-  event.stopPropagation()
-  event.preventDefault()
+function handleEdit() {
   emit('edit-movie', props.movieId)
 }
 
-function handleDelete(event) {
-  event.stopPropagation()
-  event.preventDefault()
+function handleDelete() {
   emit('delete-movie', props.movieId)
 }
 
-function handleSetRating(event, newRating) {
-  event.stopPropagation()
-  event.preventDefault()
+function handleSetRating(newRating) {
   if (newRating === props.rating) return
   emit('update-rating', { id: props.movieId, rating: newRating })
 }
 
-function handleRemoveRating(event) {
-  event.stopPropagation()
-  event.preventDefault()
+function handleRemoveRating() {
   emit('remove-rating', props.movieId)
 }
 </script>
@@ -44,7 +36,6 @@ function handleRemoveRating(event) {
   >
     <div class="relative">
       <img :src="poster" :alt="altText" class="w-full h-80 object-cover" />
-
       <div
         class="absolute top-3 right-3 bg-yellow-400 text-gray-900 rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg shadow-md"
       >
@@ -52,7 +43,7 @@ function handleRemoveRating(event) {
       </div>
     </div>
 
-    <div class="p-4 bg-white">
+    <div class="p-4 bg-white flex flex-col flex-grow">
       <h3 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h3>
 
       <div class="flex flex-wrap gap-1 mb-3">
@@ -65,9 +56,7 @@ function handleRemoveRating(event) {
         </span>
       </div>
 
-      <p class="text-gray-700 text-sm leading-relaxed mb-4">
-        {{ description }}
-      </p>
+      <p class="text-gray-700 text-sm leading-relaxed mb-4 flex-grow">{{ description }}</p>
 
       <div class="flex items-center justify-between mt-auto">
         <div class="flex items-center space-x-2">
@@ -76,7 +65,7 @@ function handleRemoveRating(event) {
             <button
               v-for="star in 5"
               :key="star"
-              @click="handleSetRating(star)"
+              @click.stop.prevent="handleSetRating(star)"
               :class="star <= rating ? 'text-yellow-400' : 'text-gray-300'"
               class="text-2xl focus:outline-none transition-transform duration-200 hover:scale-125"
               :aria-label="`Rate ${star} stars`"
@@ -90,7 +79,7 @@ function handleRemoveRating(event) {
           class="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         >
           <button
-            @click="handleEdit"
+            @click.stop.prevent="handleEdit"
             class="text-gray-500 hover:text-blue-600 transition-colors duration-200"
             title="Edit Movie"
           >
@@ -103,9 +92,8 @@ function handleRemoveRating(event) {
               ></path>
             </svg>
           </button>
-
           <button
-            @click="handleDelete"
+            @click.stop.prevent="handleDelete"
             class="text-gray-500 hover:text-red-600 transition-colors duration-200"
             title="Delete Movie"
           >
@@ -122,7 +110,7 @@ function handleRemoveRating(event) {
       </div>
       <button
         v-if="rating > 0"
-        @click="handleRemoveRating"
+        @click.stop.prevent="handleRemoveRating"
         class="mt-4 w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md font-medium text-sm transition-colors duration-200"
       >
         Remove Rating

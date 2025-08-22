@@ -11,6 +11,17 @@
 <br/>
 <br/>
 <img width="1236" height="562" alt="p3" src="https://github.com/user-attachments/assets/f7ec1147-c875-4c54-b49e-cdb38d3339b8" />
+<br/>
+<br/>
+<img width="692" height="491" alt="add" src="https://github.com/user-attachments/assets/7417b8f3-9dec-401e-8799-ae64c7a903cb" />
+<br/>
+<br/>
+<img width="845" height="533" alt="edit" src="https://github.com/user-attachments/assets/fd7a4def-9c6e-4df4-8ec2-2f544aeb5534" />
+<br/>
+<br/>
+<img width="1072" height="475" alt="delete" src="https://github.com/user-attachments/assets/a9b315f2-51fe-4ecc-9f5c-e5edce3d73aa" />
+<br/>
+<br/>
 
 ## Features
 
