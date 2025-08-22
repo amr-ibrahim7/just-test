@@ -20,6 +20,19 @@ export function useMovies() {
     }
   }
 
+  async function fetchOneMovie(movieId) {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/${movieId}`)
+      if (!response.ok) {
+        throw new Error('Movie not found or network error.')
+      }
+      return await response.json()
+    } catch (e) {
+      console.error(`Failed to fetch movie ${movieId}:`, e)
+      throw e
+    }
+  }
+
   async function updateMovie(movieData) {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/${movieData.id}`, {
@@ -59,5 +72,5 @@ export function useMovies() {
 
   onMounted(fetchMovies)
 
-  return { movies, loading, error, fetchMovies, updateMovie, deleteMovie }
+  return { movies, loading, error, fetchMovies, updateMovie, deleteMovie, fetchOneMovie }
 }

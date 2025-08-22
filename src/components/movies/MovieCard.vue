@@ -11,26 +11,37 @@ const props = defineProps({
 
 const emit = defineEmits(['edit-movie', 'delete-movie', 'update-rating', 'remove-rating'])
 
-function handleEdit() {
+function handleEdit(event) {
+  event.stopPropagation()
+  event.preventDefault()
   emit('edit-movie', props.movieId)
 }
 
-function handleDelete() {
+function handleDelete(event) {
+  event.stopPropagation()
+  event.preventDefault()
   emit('delete-movie', props.movieId)
 }
 
-function handleSetRating(newRating) {
+function handleSetRating(event, newRating) {
+  event.stopPropagation()
+  event.preventDefault()
   if (newRating === props.rating) return
   emit('update-rating', { id: props.movieId, rating: newRating })
 }
 
-function handleRemoveRating() {
+function handleRemoveRating(event) {
+  event.stopPropagation()
+  event.preventDefault()
   emit('remove-rating', props.movieId)
 }
 </script>
 
 <template>
-  <div class="bg-white rounded-lg overflow-hidden shadow-lg group relative">
+  <RouterLink
+    :to="{ name: 'movie-details', params: { id: movieId } }"
+    class="bg-white rounded-lg overflow-hidden shadow-lg group relative flex flex-col hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300"
+  >
     <div class="relative">
       <img :src="poster" :alt="altText" class="w-full h-80 object-cover" />
 
@@ -117,5 +128,5 @@ function handleRemoveRating() {
         Remove Rating
       </button>
     </div>
-  </div>
+  </RouterLink>
 </template>

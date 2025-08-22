@@ -7,6 +7,9 @@ A simple and interactive movie rating application built with Vue.js, Tailwind CS
 <br/>
 <br/>
 <img width="1264" height="598" alt="app2" src="https://github.com/user-attachments/assets/ccc54341-eedd-4e3a-86fa-3d935ac43094" />
+<br/>
+<br/>
+<img width="1236" height="562" alt="p3" src="https://github.com/user-attachments/assets/f7ec1147-c875-4c54-b49e-cdb38d3339b8" />
 
 ## Features
 
