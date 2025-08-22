@@ -29,9 +29,11 @@ function openAddMovieModal() {
   movieToEdit.value = null
   isAddModalOpen.value = true
 }
+
 function closeAddMovieModal() {
   isAddModalOpen.value = false
 }
+
 function handleMovieAdded(newMovie) {
   movies.value.push(newMovie)
   closeAddMovieModal()
@@ -44,6 +46,7 @@ function openEditMovieModal(movieId) {
     isEditModalOpen.value = true
   }
 }
+
 function closeEditMovieModal() {
   isEditModalOpen.value = false
 }
@@ -53,10 +56,23 @@ async function handleMovieUpdated(updatedMovieData) {
   closeEditMovieModal()
 }
 
+async function handleUpdateRating({ id, rating }) {
+  const movie = movies.value.find((m) => m.id === id)
+  if (movie) {
+    const updatedMovieData = { ...movie, rating: rating }
+    await updateMovie(updatedMovieData)
+  }
+}
+
+async function handleRemoveRating(movieId) {
+  await handleUpdateRating({ id: movieId, rating: 0 })
+}
+
 function openDeleteConfirmation(movieId) {
   movieToDeleteId.value = movieId
   isConfirmModalOpen.value = true
 }
+
 async function confirmDelete() {
   if (movieToDeleteId.value) {
     await deleteMovie(movieToDeleteId.value)
@@ -82,11 +98,6 @@ function closeSuccessModal() {
       </div>
     </div>
     <div class="flex space-x-4">
-      <button
-        class="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors duration-200"
-      >
-        Remove Ratings
-      </button>
       <button
         @click="openAddMovieModal"
         class="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-medium transition-colors duration-200"
@@ -114,6 +125,8 @@ function closeSuccessModal() {
       :alt-text="movie.name"
       @edit-movie="openEditMovieModal"
       @delete-movie="openDeleteConfirmation"
+      @update-rating="handleUpdateRating"
+      @remove-rating="handleRemoveRating"
     />
   </div>
 

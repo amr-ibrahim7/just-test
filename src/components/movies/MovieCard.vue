@@ -9,7 +9,7 @@ const props = defineProps({
   movieId: [String, Number],
 })
 
-const emit = defineEmits(['edit-movie', 'delete-movie'])
+const emit = defineEmits(['edit-movie', 'delete-movie', 'update-rating', 'remove-rating'])
 
 function handleEdit() {
   emit('edit-movie', props.movieId)
@@ -17,6 +17,15 @@ function handleEdit() {
 
 function handleDelete() {
   emit('delete-movie', props.movieId)
+}
+
+function handleSetRating(newRating) {
+  if (newRating === props.rating) return
+  emit('update-rating', { id: props.movieId, rating: newRating })
+}
+
+function handleRemoveRating() {
+  emit('remove-rating', props.movieId)
 }
 </script>
 
@@ -49,18 +58,20 @@ function handleDelete() {
         {{ description }}
       </p>
 
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between mt-auto">
         <div class="flex items-center space-x-2">
-          <span class="text-gray-600 text-sm font-medium">Rating: ({{ rating }}/5)</span>
+          <span class="text-gray-600 text-sm font-medium">Rating:</span>
           <div class="flex items-center">
-            <span
+            <button
               v-for="star in 5"
               :key="star"
+              @click="handleSetRating(star)"
               :class="star <= rating ? 'text-yellow-400' : 'text-gray-300'"
-              class="text-base"
+              class="text-2xl focus:outline-none transition-transform duration-200 hover:scale-125"
+              :aria-label="`Rate ${star} stars`"
             >
               ★
-            </span>
+            </button>
           </div>
         </div>
 
@@ -98,6 +109,13 @@ function handleDelete() {
           </button>
         </div>
       </div>
+      <button
+        v-if="rating > 0"
+        @click="handleRemoveRating"
+        class="mt-4 w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md font-medium text-sm transition-colors duration-200"
+      >
+        Remove Rating
+      </button>
     </div>
   </div>
 </template>

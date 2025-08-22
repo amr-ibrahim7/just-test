@@ -17,31 +17,26 @@ const movieSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
   description: z.string().min(10, 'Description must be at least 10 characters long'),
   image: z.string().url('Please enter a valid image URL'),
-  rating: z.number().min(1, 'Rating must be at least 1').max(5, 'Rating cannot exceed 5'),
+  rating: z.number().min(0, 'Rating must be at least 0').max(5, 'Rating cannot exceed 5'),
   genres: z.array(z.string()).min(1, 'Please select at least one genre'),
   inTheaters: z.boolean(),
 })
 
-const newMovie = ref({
+const defaultMovieState = {
   name: '',
   description: '',
   image: '',
-  rating: 5,
+  rating: 0,
   genres: [],
   inTheaters: false,
-})
+}
+
+const newMovie = ref({ ...defaultMovieState })
 
 const errors = ref({})
 
 function resetForm() {
-  newMovie.value = {
-    name: '',
-    description: '',
-    image: '',
-    rating: 5,
-    genres: [],
-    inTheaters: false,
-  }
+  newMovie.value = { ...defaultMovieState }
   errors.value = {}
 }
 

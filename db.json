@@ -17,7 +17,7 @@
       "name": "The Shawshank Redemption",
       "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
       "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 4,
+      "rating": 5,
       "genres": [
         "Drama",
         "Crime",
@@ -30,7 +30,7 @@
       "name": "The Dark Knight",
       "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
       "image": "https://m.media-amazon.com/images/I/81IfoBox2TL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-      "rating": 3,
+      "rating": 4,
       "genres": [
         "Action",
         "Crime",
@@ -51,59 +51,26 @@
       "inTheaters": true
     },
     {
-      "id": "ee8b",
-      "name": "ejejejeej",
-      "description": "wjjeekkkswjjeekkkswjjeekkks",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "drama,ddd"
-      ],
-      "inTheaters": true
-    },
-    {
-      "id": "be08",
-      "name": "ejejejeej",
-      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwww",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "drama,ddd"
-      ],
-      "inTheaters": true
-    },
-    {
-      "id": "6f95",
-      "name": "ejejejeej",
-      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwww",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "drama"
-      ],
-      "inTheaters": true
-    },
-    {
-      "id": "7e91",
-      "name": "ejejejeej",
-      "description": "wjjeekkkswjjeekkkswjjeekkkswwwwww",
-      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
-      "genres": [
-        "drama"
-      ],
-      "inTheaters": false
-    },
-    {
       "id": "c73c",
       "name": "ejejejeej",
       "description": "wjjeekkkswjjeekkkswjjeekkkswwwwwwwjjeekkkswjjeekkkswjjeekkkswwwwwwwjjeekkkswjjeekkkswjjeekkkswwwwww",
       "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
-      "rating": 5,
+      "rating": 3,
       "genres": [
         "drama"
       ],
       "inTheaters": false
+    },
+    {
+      "id": "cb32",
+      "name": "اشاشاشاشش",
+      "description": "AMRsAMRsAMRsAMRsAMRs",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1200_.jpg",
+      "rating": 4,
+      "genres": [
+        "Action"
+      ],
+      "inTheaters": true
     }
   ]
 }
