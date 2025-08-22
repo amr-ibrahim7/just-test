@@ -17,6 +17,39 @@ const isConfirmModalOpen = ref(false)
 const movieToEdit = ref(null)
 const movieToDeleteId = ref(null)
 
+const currentPage = ref(1)
+const itemsPerPage = ref(6)
+
+const totalPages = computed(() => {
+  if (!movies.value || movies.value.length === 0) return 0
+  return Math.ceil(movies.value.length / itemsPerPage.value)
+})
+
+const paginatedMovies = computed(() => {
+  if (!movies.value || movies.value.length === 0) return []
+  const startIndex = (currentPage.value - 1) * itemsPerPage.value
+  const endIndex = startIndex + itemsPerPage.value
+  return movies.value.slice(startIndex, endIndex)
+})
+
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page
+  }
+}
+
+function prevPage() {
+  if (currentPage.value > 1) {
+    currentPage.value--
+  }
+}
+
+function nextPage() {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+  }
+}
+
 const totalMovies = computed(() => movies.value.length)
 
 const averageRating = computed(() => {
@@ -112,22 +145,63 @@ function closeSuccessModal() {
     An error occurred: {{ error }}
   </div>
   <div v-else-if="movies.length === 0" class="text-center text-gray-400">No movies found.</div>
-  <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <MovieCard
-      v-for="movie in movies"
-      :key="movie.id"
-      :movie-id="movie.id"
-      :title="movie.name"
-      :genres="movie.genres"
-      :description="movie.description"
-      :rating="movie.rating"
-      :poster="movie.image"
-      :alt-text="movie.name"
-      @edit-movie="openEditMovieModal"
-      @delete-movie="openDeleteConfirmation"
-      @update-rating="handleUpdateRating"
-      @remove-rating="handleRemoveRating"
-    />
+  <div v-else>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <MovieCard
+        v-for="movie in paginatedMovies"
+        :key="movie.id"
+        :movie-id="movie.id"
+        :title="movie.name"
+        :genres="movie.genres"
+        :description="movie.description"
+        :rating="movie.rating"
+        :poster="movie.image"
+        :alt-text="movie.name"
+        @edit-movie="openEditMovieModal"
+        @delete-movie="openDeleteConfirmation"
+        @update-rating="handleUpdateRating"
+        @remove-rating="handleRemoveRating"
+      />
+    </div>
+
+    <div v-if="totalPages > 1" class="flex justify-center items-center mt-12 space-x-2">
+      <button
+        @click="prevPage"
+        :disabled="currentPage === 1"
+        class="px-4 py-2 bg-gray-700 text-white rounded-lg transition-colors duration-200"
+        :class="{
+          'opacity-50 cursor-not-allowed': currentPage === 1,
+          'hover:bg-gray-600': currentPage > 1,
+        }"
+      >
+        Prev
+      </button>
+
+      <button
+        v-for="page in totalPages"
+        :key="page"
+        @click="goToPage(page)"
+        class="px-4 py-2 rounded-lg transition-colors duration-200"
+        :class="{
+          'bg-cyan-600 text-white font-bold': page === currentPage,
+          'bg-gray-700 text-white hover:bg-gray-600': page !== currentPage,
+        }"
+      >
+        {{ page }}
+      </button>
+
+      <button
+        @click="nextPage"
+        :disabled="currentPage === totalPages"
+        class="px-4 py-2 bg-gray-700 text-white rounded-lg transition-colors duration-200"
+        :class="{
+          'opacity-50 cursor-not-allowed': currentPage === totalPages,
+          'hover:bg-gray-600': currentPage < totalPages,
+        }"
+      >
+        Next
+      </button>
+    </div>
   </div>
 
   <MovieModal
