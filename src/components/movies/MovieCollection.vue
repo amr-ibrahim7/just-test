@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import MovieCard from './MovieCard.vue'
 import MovieModal from './MovieModal.vue'
 import EditMovieModal from './EditMovieModal.vue'
@@ -9,28 +9,58 @@ import { useMovies } from '@/composables/useMovies.js'
 
 const { movies, loading, error, deleteMovie, updateMovie } = useMovies()
 
-const isAddModalOpen = ref(false)
-const isEditModalOpen = ref(false)
-const isSuccessModalOpen = ref(false)
-const isConfirmModalOpen = ref(false)
+const searchQuery = ref('')
+const selectedGenres = ref([])
+const inTheatersOnly = ref(false)
+const availableGenres = ['Drama', 'Crime', 'Action', 'Comedy']
 
-const movieToEdit = ref(null)
-const movieToDeleteId = ref(null)
+const filteredMovies = computed(() => {
+  let moviesToFilter = movies.value
+
+  if (searchQuery.value.trim() !== '') {
+    const lowerCaseQuery = searchQuery.value.toLowerCase()
+    moviesToFilter = moviesToFilter.filter((movie) =>
+      movie.name.toLowerCase().includes(lowerCaseQuery),
+    )
+  }
+
+  if (inTheatersOnly.value) {
+    moviesToFilter = moviesToFilter.filter((movie) => movie.inTheaters)
+  }
+
+  if (selectedGenres.value.length > 0) {
+    moviesToFilter = moviesToFilter.filter((movie) =>
+      selectedGenres.value.some((selectedGenre) => movie.genres.includes(selectedGenre)),
+    )
+  }
+
+  return moviesToFilter
+})
 
 const currentPage = ref(1)
 const itemsPerPage = ref(6)
 
 const totalPages = computed(() => {
-  if (!movies.value || movies.value.length === 0) return 0
-  return Math.ceil(movies.value.length / itemsPerPage.value)
+  return Math.ceil(filteredMovies.value.length / itemsPerPage.value)
 })
 
 const paginatedMovies = computed(() => {
-  if (!movies.value || movies.value.length === 0) return []
   const startIndex = (currentPage.value - 1) * itemsPerPage.value
   const endIndex = startIndex + itemsPerPage.value
-  return movies.value.slice(startIndex, endIndex)
+  return filteredMovies.value.slice(startIndex, endIndex)
 })
+
+watch(filteredMovies, () => {
+  if (currentPage.value > totalPages.value) {
+    currentPage.value = 1
+  }
+})
+
+function resetFilters() {
+  searchQuery.value = ''
+  selectedGenres.value = []
+  inTheatersOnly.value = false
+}
 
 function goToPage(page) {
   if (page >= 1 && page <= totalPages.value) {
@@ -50,45 +80,43 @@ function nextPage() {
   }
 }
 
+const isAddModalOpen = ref(false)
+const isEditModalOpen = ref(false)
+const isSuccessModalOpen = ref(false)
+const isConfirmModalOpen = ref(false)
+const movieToEdit = ref(null)
+const movieToDeleteId = ref(null)
 const totalMovies = computed(() => movies.value.length)
-
 const averageRating = computed(() => {
   if (movies.value.length === 0) return 0
   const total = movies.value.reduce((sum, movie) => sum + movie.rating, 0)
   return (total / movies.value.length).toFixed(1)
 })
-
 function openAddMovieModal() {
   movieToEdit.value = null
   isAddModalOpen.value = true
 }
-
 function closeAddMovieModal() {
   isAddModalOpen.value = false
 }
-
 function handleMovieAdded(newMovie) {
   movies.value.push(newMovie)
   closeAddMovieModal()
   isSuccessModalOpen.value = true
 }
-
 function openEditMovieModal(movieId) {
   movieToEdit.value = movies.value.find((m) => m.id === movieId)
   if (movieToEdit.value) {
     isEditModalOpen.value = true
   }
 }
-
 function closeEditMovieModal() {
   isEditModalOpen.value = false
 }
-
 async function handleMovieUpdated(updatedMovieData) {
   await updateMovie(updatedMovieData)
   closeEditMovieModal()
 }
-
 async function handleUpdateRating({ id, rating }) {
   const movie = movies.value.find((m) => m.id === id)
   if (movie) {
@@ -96,16 +124,13 @@ async function handleUpdateRating({ id, rating }) {
     await updateMovie(updatedMovieData)
   }
 }
-
 async function handleRemoveRating(movieId) {
   await handleUpdateRating({ id: movieId, rating: 0 })
 }
-
 function openDeleteConfirmation(movieId) {
   movieToDeleteId.value = movieId
   isConfirmModalOpen.value = true
 }
-
 async function confirmDelete() {
   if (movieToDeleteId.value) {
     await deleteMovie(movieToDeleteId.value)
@@ -113,14 +138,13 @@ async function confirmDelete() {
   isConfirmModalOpen.value = false
   movieToDeleteId.value = null
 }
-
 function closeSuccessModal() {
   isSuccessModalOpen.value = false
 }
 </script>
 
 <template>
-  <div class="flex items-center justify-between mb-12">
+  <div class="flex items-center justify-between mb-6">
     <div class="flex items-center space-x-8">
       <div class="text-gray-300 text-lg font-medium">
         <span class="text-white font-semibold">Total Movies:</span> {{ totalMovies }}
@@ -140,11 +164,54 @@ function closeSuccessModal() {
     </div>
   </div>
 
+  <div class="mb-8 p-4 bg-gray-800 rounded-lg space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search for a movie..."
+        class="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      />
+      <div class="flex items-center justify-start space-x-4">
+        <div class="flex items-center">
+          <input
+            id="inTheaters"
+            v-model="inTheatersOnly"
+            type="checkbox"
+            class="h-4 w-4 text-cyan-600 bg-gray-900 border-gray-600 rounded focus:ring-cyan-500"
+          />
+          <label for="inTheaters" class="ml-2 text-sm text-gray-300">In Theaters Only</label>
+        </div>
+        <button
+          @click="resetFilters"
+          class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors duration-200"
+        >
+          Reset Filters
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <span class="text-sm font-medium text-gray-300">Genres:</span>
+      <div v-for="genre in availableGenres" :key="genre" class="flex items-center">
+        <input
+          :id="`genre-${genre}`"
+          v-model="selectedGenres"
+          :value="genre"
+          type="checkbox"
+          class="h-4 w-4 text-cyan-600 bg-gray-900 border-gray-600 rounded focus:ring-cyan-500"
+        />
+        <label :for="`genre-${genre}`" class="ml-2 text-sm text-gray-400">{{ genre }}</label>
+      </div>
+    </div>
+  </div>
+
   <div v-if="loading" class="text-center text-gray-400 text-xl">Loading movies...</div>
   <div v-else-if="error" class="text-center text-red-400 text-xl">
     An error occurred: {{ error }}
   </div>
-  <div v-else-if="movies.length === 0" class="text-center text-gray-400">No movies found.</div>
+  <div v-else-if="paginatedMovies.length === 0" class="text-center text-gray-400 py-10">
+    No movies match your filters.
+  </div>
   <div v-else>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <MovieCard
@@ -176,7 +243,6 @@ function closeSuccessModal() {
       >
         Prev
       </button>
-
       <button
         v-for="page in totalPages"
         :key="page"
@@ -189,7 +255,6 @@ function closeSuccessModal() {
       >
         {{ page }}
       </button>
-
       <button
         @click="nextPage"
         :disabled="currentPage === totalPages"
@@ -209,16 +274,13 @@ function closeSuccessModal() {
     @close="closeAddMovieModal"
     @movie-added="handleMovieAdded"
   />
-
   <EditMovieModal
     :is-open="isEditModalOpen"
     :movie="movieToEdit"
     @close="closeEditMovieModal"
     @movie-updated="handleMovieUpdated"
   />
-
   <SuccessModal :is-open="isSuccessModalOpen" @close="closeSuccessModal" />
-
   <ConfirmationModal
     :is-open="isConfirmModalOpen"
     @close="isConfirmModalOpen = false"
